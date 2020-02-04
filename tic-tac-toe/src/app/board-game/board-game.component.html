@@ -1,0 +1,43 @@
+<mat-grid-list cols="12" rowHeight="50px">
+
+   <mat-grid-tile colspan="12" rowspan="1">
+      Choose a tile for {{playerName}}
+   </mat-grid-tile>
+   <mat-grid-tile colspan="3" rowspan="1">
+      {{firstPlayerName}}&#39;s score (X):
+      <br/> {{firstPlayerScore}}
+   </mat-grid-tile>
+
+   <mat-grid-tile colspan="6" rowspan="1">
+      <button mat-raised-button (click)="selectButton('6')" color="{{btnProps[6].color}}"
+         [disabled]="btnProps[6].disabled">{{btnProps[6].label}}</button>
+      <button mat-raised-button (click)="selectButton('7')" color="{{btnProps[7].color}}"
+         [disabled]="btnProps[7].disabled">{{btnProps[7].label}}</button>
+      <button mat-raised-button (click)="selectButton('8')" color="{{btnProps[8].color}}"
+         [disabled]="btnProps[8].disabled">{{btnProps[8].label}}</button>
+   </mat-grid-tile>
+   <mat-grid-tile colspan="3" rowspan="1">
+      {{secondPlayerName}}&#39;s score (O): <br/> {{secondPlayerScore}}
+   </mat-grid-tile>
+   <mat-grid-tile colspan="12" rowspan="1">
+      <button mat-raised-button (click)="selectButton('3')" color="{{btnProps[3].color}}"
+         [disabled]="btnProps[3].disabled">{{btnProps[3].label}}</button>
+      <button mat-raised-button (click)="selectButton('4')" color="{{btnProps[4].color}}"
+         [disabled]="btnProps[4].disabled">{{btnProps[4].label}}</button>
+      <button mat-raised-button (click)="selectButton('5')" color="{{btnProps[5].color}}"
+         [disabled]="btnProps[5].disabled">{{btnProps[5].label}}</button>
+   </mat-grid-tile>
+   <mat-grid-tile colspan="12" rowspan="1">
+      <button mat-raised-button (click)="selectButton('0')" color="{{btnProps[0].color}}"
+         [disabled]="btnProps[0].disabled">{{btnProps[0].label}}</button>
+      <button mat-raised-button (click)="selectButton('1')" color="{{btnProps[1].color}}"
+         [disabled]="btnProps[1].disabled">{{btnProps[1].label}}</button>
+      <button mat-raised-button (click)="selectButton('2')" color="{{btnProps[2].color}}"
+         [disabled]="btnProps[2].disabled">{{btnProps[2].label}}</button>
+   </mat-grid-tile>
+
+   <mat-grid-tile colspan="12" rowspan="1">
+      <!-- <button mat-raised-button (click)="initBoard()">Reset Board</button> -->
+      <button mat-raised-button (click)="resetGame()">Reset Game</button>
+   </mat-grid-tile>
+</mat-grid-list>

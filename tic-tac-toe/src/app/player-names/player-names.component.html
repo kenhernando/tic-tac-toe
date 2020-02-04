@@ -1,1 +1,21 @@
-<p>player-names works!</p>
+<mat-grid-list cols="12" rowHeight="100px">
+    <mat-grid-tile colspan="12" rowspan="1"  [style.background-color]="'gray'">
+      TIC TAC TOE
+       </mat-grid-tile>
+       <mat-grid-tile colspan="1" rowspan="3"  [style.background-color]="'blue'">
+       </mat-grid-tile>
+       <mat-grid-tile colspan="10" rowspan="3">
+        <form class="player-form">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Enter name of Player X: " [(ngModel)]="firstPlayerName" name="firstPlayer" value="">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Enter name of Player O: " [(ngModel)]="secondPlayerName" name="secondPlayer" value="">
+              </mat-form-field>
+              <button mat-raised-button (click)="submitNames()" color="primary">Play!</button>
+        </form>
+       </mat-grid-tile>
+       <mat-grid-tile colspan="1" rowspan="3" [style.background-color]="'blue'">
+       </mat-grid-tile>
+  </mat-grid-list>
+
