@@ -16,8 +16,9 @@ export class LocalStorageService {
   }
 
   /**save to local storage where value is of type: number or list of objects */
-  public setItem(key, value) {
-    localStorage.setItem(key, JSON.stringify(value));
+  public setItem(key, value, isString) {
+    value = isString ? value : JSON.stringify(value);
+    localStorage.setItem(key, value);
   }
 
   public getListItem(key) {

@@ -15,11 +15,10 @@ export class AppComponent {
   ngOnInit() {
     
   /**
-   * if cache/saved-game is available, route to pre-filled tic-tac-toe page.
-   * else route to player-names page.
+   * if cache/saved-game is available, route to pre-filled tic-tac-toe tiles, otherwise route to player-names page.
    */
     const cachedData = this.localStorageService.getItem('cachedData');
-    if (cachedData !== 'undefined' && typeof cachedData !== 'undefined' && cachedData.length > 1) {
+    if (cachedData !== 'undefined' && typeof cachedData !== 'undefined' && cachedData != null && cachedData.length > 1) {
       this.router.navigate(['board-game']);
     } else {
       this.router.navigate(['player-names']);

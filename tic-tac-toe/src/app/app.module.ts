@@ -13,6 +13,10 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { BoardGameComponent } from './board-game/board-game.component';
 import { ResultDialogComponent } from './result-dialog/result-dialog.component';
+import {InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { DataService } from './data.service';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +33,9 @@ import { ResultDialogComponent } from './result-dialog/result-dialog.component';
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
-    MatDialogModule],
+    MatDialogModule,
+    InMemoryWebApiModule.forRoot(DataService),
+    HttpClientModule],
 
   providers: [],
   bootstrap: [AppComponent],
