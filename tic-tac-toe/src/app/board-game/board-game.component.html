@@ -4,17 +4,17 @@
    </mat-grid-tile>
 </mat-grid-list>
 <ng-template #tictactoe>
-   <mat-grid-list cols="12" rowHeight="50px">
+   <mat-grid-list cols="12" rowHeight="30px">
 
-      <mat-grid-tile colspan="12" rowspan="1">
-         Choose a tile for {{playerName}}
+      <mat-grid-tile colspan="12" rowspan="2">
+         Choose a tile for {{currentPlayerName}}
       </mat-grid-tile>
-      <mat-grid-tile colspan="3" rowspan="1">
+      <mat-grid-tile colspan="3" rowspan="2">
          {{firstPlayerName}}&#39;s score &#40;X&#41;:
          <br /> {{firstPlayerScore}}
       </mat-grid-tile>
 
-      <mat-grid-tile colspan="6" rowspan="1">
+      <mat-grid-tile colspan="6" rowspan="2">
          <button mat-raised-button (click)="onTileSelect('6')" color="{{btnProps[6].color}}"
             [disabled]="btnProps[6].disabled">{{btnProps[6].label}}</button>
          <button mat-raised-button (click)="onTileSelect('7')" color="{{btnProps[7].color}}"
@@ -22,10 +22,10 @@
          <button mat-raised-button (click)="onTileSelect('8')" color="{{btnProps[8].color}}"
             [disabled]="btnProps[8].disabled">{{btnProps[8].label}}</button>
       </mat-grid-tile>
-      <mat-grid-tile colspan="3" rowspan="1">
+      <mat-grid-tile colspan="3" rowspan="2">
          {{secondPlayerName}}&#39;s score &#40;O&#41;: <br /> {{secondPlayerScore}}
       </mat-grid-tile>
-      <mat-grid-tile colspan="12" rowspan="1">
+      <mat-grid-tile colspan="12" rowspan="2">
          <button mat-raised-button (click)="onTileSelect('3')" color="{{btnProps[3].color}}"
             [disabled]="btnProps[3].disabled">{{btnProps[3].label}}</button>
          <button mat-raised-button (click)="onTileSelect('4')" color="{{btnProps[4].color}}"
@@ -33,7 +33,7 @@
          <button mat-raised-button (click)="onTileSelect('5')" color="{{btnProps[5].color}}"
             [disabled]="btnProps[5].disabled">{{btnProps[5].label}}</button>
       </mat-grid-tile>
-      <mat-grid-tile colspan="12" rowspan="1">
+      <mat-grid-tile colspan="12" rowspan="2">
          <button mat-raised-button (click)="onTileSelect('0')" color="{{btnProps[0].color}}"
             [disabled]="btnProps[0].disabled">{{btnProps[0].label}}</button>
          <button mat-raised-button (click)="onTileSelect('1')" color="{{btnProps[1].color}}"
@@ -42,7 +42,8 @@
             [disabled]="btnProps[2].disabled">{{btnProps[2].label}}</button>
       </mat-grid-tile>
 
-      <mat-grid-tile colspan="12" rowspan="1">
+      <mat-grid-tile colspan="12" rowspan="3">
+         <button mat-raised-button id="clearBtn" (click)="initBoard()">Clear Board</button>
          <button mat-raised-button (click)="resetGame()">Reset Game</button>
       </mat-grid-tile>
    </mat-grid-list>

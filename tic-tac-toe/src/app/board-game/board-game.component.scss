@@ -1,11 +1,9 @@
-.red-button {
-    background-color: red;
+ .mat-raised-button.mat-primary {
+    margin-right: 15px;
+    height: 50px;
+    width: 50px
 }
 
-.green-button {
-    background-color: green;
-}
-
-.blue-button {
-    background-color: blue;
+#clearBtn {
+    margin-right: 20px;
 }

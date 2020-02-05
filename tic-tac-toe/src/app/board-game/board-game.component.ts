@@ -21,31 +21,34 @@ export class BoardGameComponent implements OnInit {
     private dialog: MatDialog,
     private router: Router) { }
 
-  private playerBtnList = [{ 'key': "1", 'val': { label: "X" } },
-  { 'key': "2", 'val': { label: "O" } }];
+  private playerBtnList: any[] = [{ 'key': '1', 'label': 'X' },
+  { 'key': '2', 'label': 'O' }];
 
   public currentPlayerName: string = '';
   public currentPlayer: string = '1';
-  public firstPlayerName = '';
-  public secondPlayerName = '';
-  public firstPlayerScore = 0;
-  public secondPlayerScore = 0;
+  public firstPlayerName: string = '';
+  public secondPlayerName: string = '';
+  public firstPlayerScore: number = 0;
+  public secondPlayerScore: number = 0;
+  public btnProps: any[] = [];
+  public isLoaded: boolean = false;
 
-  private defaultBtnProps = [];
-  public btnProps = [];
-  public isLoaded = false;
+  private defaultBtnProps: any = [];
+  private firstPlayerPositions: string[] = [];
+  private secondPlayerPositions: string[] = [];
 
   ngOnInit() {
+    console.log('hey');
     this.configService.getBtnConfig().pipe(concatMap((data: any) => {
       this.isLoaded = true;
+      this.defaultBtnProps = data;
       const cachedData = this.localStorageService.getListItem('cachedData');
       if (cachedData.length > 1) {
-        this.btnProps = cachedData;
+        this.btnProps = cachedData.map(a => ({ ...a }));
       } else {
-        this.defaultBtnProps = data;
         this.initBoard();
       }
-      return of(null);
+      return of('next');
     })).subscribe();
 
     const cachedCurrentPlayer = this.localStorageService.getItem('currentPlayer');
@@ -68,17 +71,23 @@ export class BoardGameComponent implements OnInit {
     return typeof data !== 'undefined' && data !== 'undefined' && data !== 'null' && data !== null;
   }
 
-   /** This function will be triggered when a tile clicked or number keys.
-    * Tile button style and label will be changed and for each selection, 
-    * determine whether a player won.
-    * @param selectedBtn serves as the identifier for the button selected
-   */
+  /** This function will be triggered when a tile clicked or number keys.
+   * Tile button style and label will be changed and for each selection, 
+   * determine whether a player won.
+   * @param selectedBtn serves as the identifier for the button selected
+  */
   public onTileSelect(selectedBtn: string) {
     const playerBtnStyle = this.playerBtnList.find(el => el['key'] === this.currentPlayer);
-    this.btnProps[selectedBtn].label = playerBtnStyle['val'].label;
+    this.btnProps[selectedBtn].label = playerBtnStyle.label;
     this.btnProps[selectedBtn].disabled = true;
     this.btnProps[selectedBtn].tempData = (this.currentPlayer === '1') ? -1 : 1;
-    this.currentPlayer = (this.currentPlayer === '1') ? '2' : '1';
+    if (this.currentPlayer === '1') {
+      this.firstPlayerPositions.push(selectedBtn);
+      this.currentPlayer = '2';
+    } else {
+      this.secondPlayerPositions.push(selectedBtn);
+      this.currentPlayer = '1';
+    }
     this.determineWinner();
   }
 
@@ -139,10 +148,8 @@ export class BoardGameComponent implements OnInit {
     this.localStorageService.setItem('secondPlayerScore', this.secondPlayerScore, false);
     this.localStorageService.setItem('cachedData', this.btnProps, false);
 
-
-    /**TODO: extract player positions and replace empty array */
-    this.playerService.savePlayer('1', this.firstPlayerName, this.firstPlayerScore, []).subscribe();
-    this.playerService.savePlayer('2', this.secondPlayerName, this.secondPlayerScore, []).subscribe();
+    this.playerService.savePlayer('1', this.firstPlayerName, this.firstPlayerScore, this.firstPlayerPositions).subscribe();
+    this.playerService.savePlayer('2', this.secondPlayerName, this.secondPlayerScore, this.secondPlayerPositions).subscribe();
   }
 
   /**listen for numpad 1-9 keypress */

@@ -1,10 +1,10 @@
-<mat-grid-list cols="12" rowHeight="100px">
-    <mat-grid-tile colspan="12" rowspan="1">
+<mat-grid-list cols="12" rowHeight="30px">
+    <mat-grid-tile colspan="12" rowspan="2">
       TIC TAC TOE CHALLENGE
        </mat-grid-tile>
        <mat-grid-tile colspan="1" rowspan="3">
        </mat-grid-tile>
-       <mat-grid-tile colspan="10" rowspan="3">
+       <mat-grid-tile colspan="10" rowspan="6">
         <form #playerForm="ngForm" class="player-form" (ngSubmit)="submitNames()">
             <mat-form-field class="example-full-width">
               <input matInput placeholder="Enter name of Player X: " [(ngModel)]="firstPlayerName" name="firstPlayer" value="">

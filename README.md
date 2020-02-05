@@ -5,7 +5,7 @@ There are 2 main routes for this application: player-names and board-game. Upon 
 
 ## Components
 * player-names - component containing the form where the players can input their names.
-* The board-game - component contains the actual tic-tac-toe board where the players can play the game.
+* board-game - component contains the actual tic-tac-toe board where the players can play the game.
 * result-dialog - component containing content to be displayed inside a dialog box when a player wins. 
 
 ## Services

@@ -17,7 +17,7 @@ export class PlayerService {
      * @param score current score
      * @param position array of tiles selected
      */
-    public savePlayer(player: string, name: string, score: number, position: []) {
+    public savePlayer(player: string, name: string, score: number, position: string[]) {
       const obj = {
         player: player,
         name: name,
