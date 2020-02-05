@@ -15,8 +15,11 @@ export class PlayerNamesComponent implements OnInit {
   ngOnInit() {
   }
 
+  /** This function will be triggered when submitting the form. 
+   * Player names will be saved in local storage. 
+   */
   public submitNames() {
-    /**validate Names before submit */
+    /**TODO: validate names before submit */
     localStorage.setItem('firstPlayerName', this.firstPlayerName);
     localStorage.setItem('secondPlayerName', this.secondPlayerName);
     localStorage.setItem('currentPlayer', '1');

@@ -61,10 +61,18 @@ export class BoardGameComponent implements OnInit {
     this.secondPlayerScore = this.isValidCacheData(cachedSecondPlayerScore) ? parseInt(cachedSecondPlayerScore) : 0;
   }
 
+  /** checks for the validity of cached data from local storage (ie: not null, not undefined) 
+   * @param data data that was cached in local storage
+  */
   private isValidCacheData(data) {
     return typeof data !== 'undefined' && data !== 'undefined' && data !== 'null' && data !== null;
   }
 
+   /** This function will be triggered when a tile clicked or number keys.
+    * Tile button style and label will be changed and for each selection, 
+    * determine whether a player won.
+    * @param selectedBtn serves as the identifier for the button selected
+   */
   public onTileSelect(selectedBtn: string) {
     const playerBtnStyle = this.playerBtnList.find(el => el['key'] === this.currentPlayer);
     this.btnProps[selectedBtn].label = playerBtnStyle['val'].label;
@@ -74,6 +82,10 @@ export class BoardGameComponent implements OnInit {
     this.determineWinner();
   }
 
+  /** This function will determine which player won the game using tempData property on each button. 
+   * A sum of -3 means that the first player (Player X) has won.
+   * A sum of 3 means that the second player (Player O) has won.
+   */
   private determineWinner() {
     const winScenarios = [
       this.btnProps[6].tempData + this.btnProps[3].tempData + this.btnProps[0].tempData,
@@ -94,11 +106,13 @@ export class BoardGameComponent implements OnInit {
     }
   }
 
+  /** This will initialize the tic-tac-toe board when a player has won. */
   public initBoard() {
     this.btnProps = this.defaultBtnProps.map(a => ({ ...a }));
     this.currentPlayer = '1';
   }
 
+  /** This will open the dialog and display congratulatory message for the winner. */
   private openWinnerDialog(type, name): void {
     let dialogRef = this.dialog.open(ResultDialogComponent, {
       width: '250px',
@@ -110,12 +124,13 @@ export class BoardGameComponent implements OnInit {
     });
   }
 
+  /** Resets player score, names and current player positions from local storage. */
   public resetGame() {
     this.localStorageService.clear();
     this.router.navigate(['player-names']);
   }
 
-  /**listen for browser close event */
+  /** listen for browser close event */
   @HostListener('window:beforeunload')
   saveData() {
     this.localStorageService.setItem('firstPlayerName', this.firstPlayerName, true);
